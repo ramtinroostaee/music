@@ -1,25 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import DisplayScale from "./Components/Scales/DisplayScale";
+import { createChord, CreateScale, MajorScale, MajorTriad, MinorTriad } from "./Components/Scales/calc.ts";
+
+const AMajor = CreateScale(MajorScale, "A");
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className='resume-bg w-[1300px] m-auto flex justify-center'>
+            <div className='relative font-lato-meduim flex flex-col h-[1650px] mt-16'>
+                <DisplayScale notes={AMajor} />
+                <div className={"flex items-center my-8"}>
+                    AMin: <DisplayScale notes={createChord(AMajor, MinorTriad)} />
+                </div>
+                <div  className={"flex items-center"}>
+                    AMaj: <DisplayScale notes={createChord(AMajor, MajorTriad)} />
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default App;
